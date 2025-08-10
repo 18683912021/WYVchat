@@ -10,7 +10,6 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { Icon } from "@iconify/vue";
 import ProviderSelect from "../components/ProviderSelect.vue";
 import MessageInput from "../components/MessageInput.vue";
 import { providers } from "../testData";
