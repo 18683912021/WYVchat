@@ -1,46 +1,29 @@
 <template>
   <div class="flex items-center justify-between h-screen">
     <div class="w-[300px] bg-gray-200 h-full border-r border-gray=300">
-      <ConversationList :items="items" />
+      <div class="h-[90%] overflow-y-auto">
+        <ConversationList :items="conversations" />
+      </div>
+      <div class="h-[10%] grid grid-cols-2 gap-2 p-2">
+        <RouterLink to="/">
+          <Button icon-name="radix-icons:chat-bubble" class="w-full">
+            {{ '新建聊天' }}
+          </Button>
+        </RouterLink>
+        <RouterLink to="/settings">
+          <Button icon-name="radix-icons:gear" plain class="w-full">
+            {{ '应用设置' }}
+          </Button>
+        </RouterLink>
+      </div>
     </div>
-    <div class="h-full flex-1">content</div>
+    <div class="h-full flex-1">
+      <RouterView />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import { ConversationProps } from "./types";
+import Button from "./components/Button.vue";
 import ConversationList from "./components/ConversationList.vue";
-const items: ConversationProps[] = [
-  {
-    id: 1,
-    title: "Conversation 1",
-    selectedMode: "Mode 1",
-    createdAt: "2021-01-01",
-    updatedAt: "2021-01-01",
-    rpoviderId: 1,
-  },
-  {
-    id: 2,
-    title: "Conversation 1",
-    selectedMode: "Mode 1",
-    createdAt: "2021-02-01",
-    updatedAt: "2021-02-01",
-    rpoviderId: 1,
-  },
-  {
-    id: 3,
-    title: "Conversation 2",
-    selectedMode: "Mode 2",
-    createdAt: "2021-01-01",
-    updatedAt: "2021-01-01",
-    rpoviderId: 2,
-  },
-  {
-    id: 4,
-    title: "Conversation 2Conversation 2Conversation 2Conversation 2Conversation 2Conversation 2Conversation 2Conversation 2Conversation 2",
-    selectedMode: "Mode 2",
-    createdAt: "2021-01-01",
-    updatedAt: "2021-01-01",
-    rpoviderId: 2,
-  },
-];
+import { conversations } from "./testData";
 </script>

@@ -1,3 +1,5 @@
 node_modules
 .vite
 .vscode
+.env
+package-lock.json

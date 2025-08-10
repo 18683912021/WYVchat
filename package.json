@@ -27,6 +27,7 @@
     "@electron-forge/plugin-fuses": "^7.8.2",
     "@electron-forge/plugin-vite": "^7.8.2",
     "@electron/fuses": "^1.8.0",
+    "@iconify/vue": "^5.0.0",
     "@types/electron-squirrel-startup": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -38,9 +39,13 @@
     "vite": "^5.4.19"
   },
   "dependencies": {
+    "@baiducloud/qianfan": "^0.2.3",
     "@tailwindcss/vite": "^4.1.11",
     "electron-squirrel-startup": "^1.0.1",
+    "radix-vue": "^1.9.17",
     "tailwindcss": "^4.1.11",
-    "vue": "^3.5.18"
+    "vue": "^3.5.18",
+    "vue-i18n": "^9.14.5",
+    "vue-router": "^4.5.1"
   }
 }
