@@ -10,7 +10,7 @@
           class="flex justify-between items-center text-sm leading-5 test gray-500"
         >
           <span>{{ item.selectedModel }}</span>
-          <span>{{ item.updatedAt }}</span>
+          <span>{{ dayjs(item.updatedAt).format("YYYY-MM-DD") }}</span>
         </div>
         <h2 class="font-semibold text-gray-900 truncate">{{ item.title }}</h2>
       </a>
@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { ConversationProps } from "../types";
+import dayjs from "dayjs";
 defineProps<{ items: ConversationProps[] }>();
 const router = useRouter();
 const goToConversation = (id: number) => {

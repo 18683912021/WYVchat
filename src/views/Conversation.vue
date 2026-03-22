@@ -4,7 +4,7 @@
     v-if="conversation"
   >
     <h3 class="font-semibold text-gray-900">{{ conversation?.title }}</h3>
-    <span class="text-sm text-gray-500">{{ conversation.updatedAt }}</span>
+    <span class="text-sm text-gray-500">{{ dayjs(conversation?.updatedAt).format('YYYY-MM-DD HH:mm:ss') }}</span>
   </div>
   <div class="w-[80%] mx-auto h-[85%] overflow-y-auto pt-2">
     <MessageList :messages="filteredMessages" />
@@ -18,8 +18,10 @@ import { useRoute } from "vue-router";
 import MessageList from "../components/MessageList.vue";
 import MessageInput from "../components/MessageInput.vue";
 import { conversations, messages } from "../testData";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { ConversationProps, MessageProps } from "../types";
+import { db } from "../../src/db";
+import dayjs from "dayjs";
 const route = useRoute();
 const filteredMessages = ref<MessageProps[]>([]);
 const conversation = ref<ConversationProps>();
@@ -32,14 +34,14 @@ filteredMessages.value = messages.filter(
 );
 watch(
   () => route.params.id,
-  (newId: string) => {
+  async (newId: string) => {
     conversationId = parseInt(newId);
-    conversation.value = conversations.find(
-      (conversation) => conversation.id === conversationId
-    );
-    filteredMessages.value = messages.filter(
-      (message) => message.conversationId === parseInt(newId)
-    );
+    conversation.value = await db.conversations.where({id: conversationId}).first();
+    filteredMessages.value = await db.messages.where({conversationId}).toArray();
   }
 );
+onMounted(async () => {
+  conversation.value = await db.conversations.where({id: conversationId}).first();
+  filteredMessages.value = await db.messages.where({conversationId}).toArray();
+})
 </script>

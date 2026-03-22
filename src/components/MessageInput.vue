@@ -58,11 +58,11 @@
     // }
   }
   const onCreate = () => {
-    // if(model.value && model.value.trim() !== '') {
-    //   emit('create', model.value, selectedImage?.path || undefined)
-    //   selectedImage = null
-    //   imagePreview.value = ''
-    // } 
+    if(model.value && model.value.trim() !== '') {
+      emit('create', model.value, selectedImage ? imagePreview.value : undefined)
+      selectedImage = null
+      imagePreview.value = ''
+    } 
   }
   
   </script>

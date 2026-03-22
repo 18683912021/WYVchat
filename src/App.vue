@@ -23,7 +23,14 @@
   </div>
 </template>
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
 import Button from "./components/Button.vue";
 import ConversationList from "./components/ConversationList.vue";
-import { conversations } from "./testData";
+import { db, initProviders } from "./db";
+import { ConversationProps } from "./types";
+const conversations = ref<ConversationProps[]>([])
+onMounted(async () => {
+  await initProviders()
+  conversations.value = await db.conversations.toArray()
+ })
 </script>
